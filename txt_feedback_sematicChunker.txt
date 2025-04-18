@@ -1,0 +1,45 @@
+(venv) PS C:\Users\info\Desktop\RAG> python load_test_docs.py
+chunk 1 content:
++LLMs: type of AI model that has been trained on vast amounts of text data
++Transformers: is type of neural network, developed to solve problem of sequence transduction(ta7wil) comme traduction.
+
+GPT Feedback:
+Rating: 2
+chunk 2 content:
+->RNN: good mais peut perdre de l'information pour sequences longues. ->LSTM(Long short term memory): type du RNN but still can have troubles with long sentences
+ ->CNN(Convolutional...): grace au traitement // il est rapide mais truve prob to catch context global
++nb epoques(iterations): 3
++La Cross-Entropy compare la probabilitÃ© prÃ©dite par le modÃ¨le avec les vraies probabilitÃ©s des tokens cibles
++perplexitÃ© mesure la qualitÃ© des prÃ©dictions du modÃ¨le
+
++Architecture du transformers:
+-Embedding: convertir mots en vecteurs numeriques
+-Positional Encoding: represente la position du mot dans la phrase     
+-self-attention: permet a chaque mot de la meme sequence evaluer son importance, en calculant le score => Q(Query),V(values),K(keys) sont des parametres qui peuvent etre updated lors du training
+-Multi-Head attention: plusieurs self-attention runing in //, permet de determiner relationship entre les mots dans meme sequence. -Feed-forward layer(neural network): effectue des transformations sur attention via des couches connectees
+-Cross-Attention: lie 2 sequences et etablie relationship entre eux    
+-Linear & Softmax: convertie output of model into probabilities to predict next word in sequence
+
+Images:
++formule1: Pour avoir le Modele fine-tuned, on aplique une fonction d'activation(exp: softmax, sigmoide) sur la sortie de Ltask(couche ajoute pour une tache cible) qui prend comme argument modele pre-entraine     
+
+
+
+
+
+GPT Feedback:
+I would rate this text chunk a 2.
+
+The text contains several issues that affect its clarity and effectiveness as educational content:
+
+1. **Language and Grammar**: The text mixes English and French, which can be confusing for readers who are not fluent in both languages. Additionally, there are grammatical errors and typos, such as "truve" instead of "trouve" and "runing" instead of "running."
+
+2. **Clarity and Coherence**: The explanations are fragmented and lack coherence. For example, the description of LSTM and CNN is very brief and does not provide enough context or detail for a clear understanding.
+
+3. **Technical Accuracy**: Some technical terms and concepts are not explained adequately, such as "Cross-Attention" and "Multi-Head attention." The text assumes prior knowledge without providing sufficient background.
+
+4. **Structure and Organization**: The text lacks a clear structure, making it difficult to follow. The use of symbols like "->" and "+" is inconsistent and does not contribute to a logical flow of information.   
+
+5. **Visual Aids**: The mention of "Images" and "formule1" suggests that there are visual elements, but they are not included or described in the text, leaving the reader without important context.
+
+Overall, the text needs significant revision to improve its clarity, coherence, and educational value.
