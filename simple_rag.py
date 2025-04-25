@@ -1,5 +1,4 @@
 import os
-import chromadb
 import openai
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFLoader,UnstructuredWordDocumentLoader,UnstructuredPowerPointLoader
@@ -10,11 +9,17 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter,MarkdownHeaderTextSplitter
 import json
-from documents_all import load_documents
 from langchain_experimental.text_splitter import SemanticChunker
 from pinecone import Pinecone, ServerlessSpec
 from transformers import pipeline
 from langchain.prompts import PromptTemplate
+import fitz #PyMuPDF for PDF extraction and processing
+import cv2 #OpenCV for image processing
+import pytesseract #for OCR(Optical character recognition)
+import pandas as pd #for table processing
+import matplotlib.pyplot as plt #for chart analysis
+import seaborn as sns #for chart analysis
+
 
 load_dotenv()
 
@@ -29,6 +34,9 @@ index = pc.Index(pinecone_index_name)
 
 chat = ChatOpenAI(temperature=0.3,model_name="gpt-4o-mini",openai_api_key=openai_key,openai_organization=openai_org)
 model_embeddings = OpenAIEmbeddings(openai_api_key=openai_key,openai_organization=openai_org)
+
+#pipeline:	Ingestion(get docs) ➜ Parsing(extract raw data) ➜ Modality Detection(detect type of content) ➜ Chunking ➜ Feature Extraction(extract important detail about each chunk(tables: extract cell relationships, images:apply OCR, slides:extract hiearchie)) ➜ Embedding ➜ Storage
+
 
 def prompt_template():
     prompt = PromptTemplate(
@@ -88,19 +96,8 @@ def test(query, namespace,top_k=3):
 
 if __name__=='__main__':
     file_path="./documents/attention_pdf.pdf"
-    query = "Why does the Transformer use scaled dot-product attention instead of regular dot-product or additive attention?"
+    #query = "Why does the Transformer use scaled dot-product attention instead of regular dot-product or additive attention?"
+    query = "Can you explain the architecture of the Transformer as shown in the diagram?"
     namespace="attention_paper"
     #store_document(file_path,namespace)
     retrieve_similar_chunks_and_answer(query,namespace)
-
-
-    #llm = ChatOpenAI(temperature=0, model_name='gpt-4o',openai_api_key=openai_key, openai_organization=openai_org)
-    #chain = RetrievalQA.from_chain_type(llm, retriever=retriever)
-
-    #while True:
-     #   question = input('\n Ask a question: ')
-      #  if question.lower()=='exit':
-       #     break
-        #answer = chain.invoke(question)
-        #print('Answer:')
-        #print(answer['result'])

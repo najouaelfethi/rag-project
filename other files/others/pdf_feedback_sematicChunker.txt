@@ -1,3 +1,4 @@
+git branch -M main
 (venv) PS C:\Users\info\Desktop\RAG> python load_test_docs.py
 chunk 1 content:
 Attention Is All You Need
