@@ -40,6 +40,7 @@ class RAGEngine:
             input_variables=["context", "question"],
             template="""
             You are a helpful assistant. Use the following context to answer the question.
+            if you don't know, just say "I don't know"
 
             Context:
             {context}
@@ -53,7 +54,7 @@ class RAGEngine:
 
         chain = LLMChain(llm=self.llm, prompt=prompt)
 
-        result = chain.invoke({"context": context, "question": query})  # ⬅️ ici .invoke
+        result = chain.invoke({"context": context, "question": query}) 
 
         if return_sources:
             return result["text"], docs 

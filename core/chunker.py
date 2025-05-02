@@ -91,7 +91,7 @@ class DocumentChunker:
             
             # Get notes if available
             notes_text = ""
-            if slide.has_notes_slide and slide.notes_slide.notes_text_frame.text:
+            if (slide.has_notes_slide and slide.notes_slide.notes_text_frame and slide.notes_slide.notes_text_frame.text.strip()):
                 notes_text = slide.notes_slide.notes_text_frame.text.strip()
                 slide_content.append(f"NOTES: {notes_text}")
             

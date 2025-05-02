@@ -7,7 +7,7 @@ if __name__ == "__main__":
     )
 
     question = "Can you explain the architecture of the Transformer as shown in the diagram?"
-    # question = "What does the multi-head attention diagram in Transformers show?"
+    #question = "What does the multi-head attention diagram in Transformers show?"
     answer = rag.answer_question(question)
 
     print("\nQuestion:", question)
